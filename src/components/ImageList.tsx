@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { ApiImagesResponse, Image } from "../types";
-import axios from "axios";
-import { apiImagesURL } from "../apiEndpoint";
+import React from "react";
+import { Image } from "../types";
 import { ImageItem } from "./ImageItem";
 
-export const ImageList = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [images, setImages] = useState<Image[]>([]);
+interface Props {
+  isLoaded: boolean;
+  images: Image[];
+}
 
-  useEffect(() => {
-    axios
-      .get<ApiImagesResponse>(apiImagesURL)
-      .then((resp) => {
-        setIsLoaded(true);
-        setImages(resp.data.data);
-      });
-  }, []);
-
-  if (isLoaded) {
-    return (
-      <div>
-        {images.map((image, idx) => <ImageItem image={image} key={idx} />)}
-      </div>
-    );
-  }
-  return (
-    <div>なうろ～でぃんぐ</div>
-  )
+export const ImageList = ({ isLoaded, images }: Props) => {
+  return isLoaded ? (
+    <div>
+      {images.map((image, idx) => <ImageItem image={image} key={idx} />)}
+    </div>
+  ) : <div>なうろ～でぃんぐ</div>;
 };
