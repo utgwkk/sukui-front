@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { apiImagesURL } from "./apiEndpoint";
-import { ImageList } from "./components/ImageList";
-import { ApiImagesResponse, Image } from "./types";
+import { apiImagesURL } from "../apiEndpoint";
+import { ImageList } from "./ImageList";
+import { ApiImagesResponse, Image } from "../types";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
