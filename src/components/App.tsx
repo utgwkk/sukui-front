@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>It works!</h1>
+      <h1>救い</h1>
       <ImageList isLoaded={isLoaded} images={images} />
       <button onClick={handleLoadImageButtonClick}>画像を読み込む</button>
     </div>
