@@ -14,6 +14,11 @@ export const ImageItem = ({ image }: ImageItemProps) => {
         alt={image.comment || undefined}
       />
       <div>{image.created_at}</div>
+      {image.urls.source && (
+        <div>
+          <a href={image.urls.source}>Source</a>
+        </div>
+      )}
     </div>
   );
 };
