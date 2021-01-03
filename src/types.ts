@@ -22,3 +22,14 @@ export interface ApiImagesResponse {
   whole_count: number;
   data: Image[];
 }
+
+export interface ApiImagesSearchQueryParam {
+  all?: string;
+  any?: string;
+  ex?: string;
+  count: number;
+  maxId?: number;
+  sinceId?: number;
+}
+
+export type ApiImagesSearchResponse = ApiImagesResponse;
