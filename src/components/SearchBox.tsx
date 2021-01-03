@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 interface Props {
-  // eslint-disable-next-line no-unused-vars
   onSearch: (all?: string, any?: string, ex?: string) => void;
 }
 
