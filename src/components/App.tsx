@@ -1,32 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import qs from "querystring";
-import { apiImagesURL } from "../apiEndpoint";
+import React from "react";
 import { ImageList } from "./ImageList";
-import { ApiImagesResponse, Image } from "../types";
+import { useImages } from "../hooks/useImages";
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [images, setImages] = useState<Image[]>([]);
-
-  const loadImages = (maxId?: number) => {
-    const url = `${apiImagesURL}?${qs.stringify({
-      max_id: maxId,
-      count: 200,
-    })}`;
-    axios.get<ApiImagesResponse>(url).then((resp) => {
-      setIsLoaded(true);
-      setImages(resp.data.data);
-    });
-  };
-
-  // initial loading
-  useEffect(() => {
-    loadImages();
-  }, []);
+  const { isLoaded, images, loadImages } = useImages();
 
   const handleLoadImageButtonClick = () => {
-    setIsLoaded(false);
     const maxId = images.length > 0 ? images[images.length - 1].id : undefined;
     loadImages(maxId);
   };
