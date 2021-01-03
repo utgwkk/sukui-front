@@ -3,11 +3,11 @@ import { ImageList } from "./ImageList";
 import { useImages } from "../hooks/useImages";
 
 function App() {
-  const { isLoaded, images, loadImages } = useImages();
+  const { isLoaded, images, loadCount, loadImages } = useImages();
 
   const handleLoadImageButtonClick = () => {
     const maxId = images.length > 0 ? images[images.length - 1].id : undefined;
-    loadImages(maxId);
+    loadImages({ maxId, count: loadCount });
   };
 
   return (

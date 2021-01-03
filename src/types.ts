@@ -10,6 +10,12 @@ export interface Image {
   };
 }
 
+export interface ApiImagesQueryParam {
+  count: number;
+  maxId?: number;
+  sinceId?: number;
+}
+
 export interface ApiImagesResponse {
   ok: boolean;
   elapsed_time: number;
