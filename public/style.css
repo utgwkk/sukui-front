@@ -4,5 +4,7 @@
 }
 
 .image-item {
+    width: 256px;
+    height: 220px;
     text-align: center;
 }
