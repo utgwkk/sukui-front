@@ -8,8 +8,11 @@ interface ImageItemProps {
 export const ImageItem = ({ image }: ImageItemProps) => {
   return (
     <div>
-      <img src={image.urls.thumbnail_url} loading="lazy" />
-      {image.comment || null}
+      <img
+        src={image.urls.thumbnail_url}
+        loading="lazy"
+        alt={image.comment || undefined}
+      />
     </div>
   );
 };
