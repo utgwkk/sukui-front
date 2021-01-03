@@ -1,7 +1,7 @@
 export interface Image {
   id: number;
   filename: string;
-  craeted_at: string;
+  created_at: string;
   comment?: string;
   urls: {
     image_url: string;

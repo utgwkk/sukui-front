@@ -13,6 +13,7 @@ export const ImageItem = ({ image }: ImageItemProps) => {
         loading="lazy"
         alt={image.comment || undefined}
       />
+      <div>{image.created_at}</div>
     </div>
   );
 };
