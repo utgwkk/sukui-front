@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import qs from "querystring";
 import { apiImagesURL } from "../apiEndpoint";
 import { ImageList } from "./ImageList";
 import { ApiImagesResponse, Image } from "../types";
@@ -9,8 +10,10 @@ function App() {
   const [images, setImages] = useState<Image[]>([]);
 
   const loadImages = (maxId?: number) => {
-    const url =
-      maxId !== undefined ? `${apiImagesURL}?max_id=${maxId}` : apiImagesURL;
+    const url = `${apiImagesURL}?${qs.stringify({
+      max_id: maxId,
+      count: 200,
+    })}`;
     axios.get<ApiImagesResponse>(url).then((resp) => {
       setIsLoaded(true);
       setImages(resp.data.data);
