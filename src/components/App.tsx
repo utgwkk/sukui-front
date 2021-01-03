@@ -4,7 +4,14 @@ import { SearchBox } from "./SearchBox";
 import { useImages } from "../hooks/useImages";
 
 function App() {
-  const { isLoaded, images, loadCount, loadImages, searchImages } = useImages();
+  const {
+    isLoaded,
+    images,
+    loadCount,
+    wholeCount,
+    loadImages,
+    searchImages,
+  } = useImages();
 
   const handleLoadImageButtonClick = () => {
     const maxId = images.length > 0 ? images[images.length - 1].id : undefined;
@@ -21,7 +28,7 @@ function App() {
       <SearchBox onSearch={handleSearchButtonClick} />
       <button onClick={handleLoadImageButtonClick}>画像を読み込む</button>
       <hr />
-      <ImageList isLoaded={isLoaded} images={images} />
+      <ImageList isLoaded={isLoaded} images={images} wholeCount={wholeCount} />
     </div>
   );
 }

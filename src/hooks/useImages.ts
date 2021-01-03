@@ -14,6 +14,7 @@ export const useImages = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [images, setImages] = useState<Image[]>([]);
   const [loadCount] = useState(200);
+  const [wholeCount, setWholeCount] = useState(0);
 
   const loadImages = ({ maxId, count }: ApiImagesQueryParam) => {
     setIsLoaded(false);
@@ -24,6 +25,7 @@ export const useImages = () => {
     axios.get<ApiImagesResponse>(url).then((resp) => {
       setIsLoaded(true);
       setImages(resp.data.data);
+      setWholeCount(resp.data.whole_count);
     });
   };
 
@@ -45,6 +47,7 @@ export const useImages = () => {
     axios.get<ApiImagesSearchResponse>(url).then((resp) => {
       setIsLoaded(true);
       setImages(resp.data.data);
+      setWholeCount(resp.data.whole_count);
     });
   };
 
@@ -57,6 +60,7 @@ export const useImages = () => {
     isLoaded,
     images,
     loadCount,
+    wholeCount,
     loadImages,
     searchImages,
   };
