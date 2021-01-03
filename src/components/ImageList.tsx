@@ -9,7 +9,7 @@ interface Props {
 
 export const ImageList = ({ isLoaded, images }: Props) => {
   return isLoaded ? (
-    <div>
+    <div className="image-list-container">
       {images.length > 0
         ? images.map((image, idx) => <ImageItem image={image} key={idx} />)
         : "画像はありません"}

@@ -7,7 +7,7 @@ interface ImageItemProps {
 
 export const ImageItem = ({ image }: ImageItemProps) => {
   return (
-    <div>
+    <div className="image-item">
       <img
         src={image.urls.thumbnail_url}
         loading="lazy"
