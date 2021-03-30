@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageList } from "./ImageList";
 import { SearchBox } from "./SearchBox";
 import { useImages } from "../hooks/useImages";
@@ -12,6 +12,11 @@ function App() {
     loadImages,
     searchImages,
   } = useImages();
+
+  // initial loading
+  useEffect(() => {
+    loadImages({ count: 200 });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLoadImageButtonClick = () => {
     const maxId = images.length > 0 ? images[images.length - 1].id : undefined;

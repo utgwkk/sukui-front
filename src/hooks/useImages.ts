@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import qs from "querystring";
 import {
@@ -16,20 +16,19 @@ export const useImages = () => {
   const [loadCount] = useState(200);
   const [wholeCount, setWholeCount] = useState(0);
 
-  const loadImages = ({ maxId, count }: ApiImagesQueryParam) => {
+  const loadImages = async ({ maxId, count }: ApiImagesQueryParam) => {
     setIsLoaded(false);
     const url = `${apiImagesURL}?${qs.stringify({
       max_id: maxId,
       count: count,
     })}`;
-    axios.get<ApiImagesResponse>(url).then((resp) => {
-      setIsLoaded(true);
-      setImages(resp.data.data);
-      setWholeCount(resp.data.whole_count);
-    });
+    const resp = await axios.get<ApiImagesResponse>(url);
+    setIsLoaded(true);
+    setImages(resp.data.data);
+    setWholeCount(resp.data.whole_count);
   };
 
-  const searchImages = ({
+  const searchImages = async ({
     all,
     any,
     ex,
@@ -44,17 +43,11 @@ export const useImages = () => {
       any,
       ex,
     })}`;
-    axios.get<ApiImagesSearchResponse>(url).then((resp) => {
-      setIsLoaded(true);
-      setImages(resp.data.data);
-      setWholeCount(resp.data.whole_count);
-    });
+    const resp = await axios.get<ApiImagesSearchResponse>(url);
+    setIsLoaded(true);
+    setImages(resp.data.data);
+    setWholeCount(resp.data.whole_count);
   };
-
-  // initial loading
-  useEffect(() => {
-    loadImages({ count: 200 });
-  }, []);
 
   return {
     isLoaded,
